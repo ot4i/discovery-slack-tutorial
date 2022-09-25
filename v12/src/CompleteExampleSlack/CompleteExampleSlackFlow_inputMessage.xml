@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<MessagePool xmlns="http://wwww.ibm.com/iib/test/1.0.0">
+    <InputMessage timestamp="1663969086145" nodeId="FCMComposite_1_4" name="new message 1" id="1663969086145-252">
+        <plainText>%7B%0D%0A++%22text%22%3A+%22This+is+a+message+from+your+App+Connect+Enterprise+message+flow%21%22%0D%0A%7D</plainText>
+    </InputMessage>
+</MessagePool>

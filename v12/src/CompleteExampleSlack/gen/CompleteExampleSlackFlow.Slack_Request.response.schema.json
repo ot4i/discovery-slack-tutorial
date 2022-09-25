@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "ts": {
+      "displayOrder": 21,
+      "title": "Time stamp",
+      "type": "string"
+    }
+  },
+  "title": "message"
+}
