@@ -1,0 +1,314 @@
+{
+    "version": "0.1",
+    "pageContent": 
+	{
+        "_comments": "object that contains data for page labels, buttons, etc.",
+        "navItems": 
+		{
+            "_common": 
+			{
+                "buttonBackToGallery": 
+				{
+                    "name": "Back To Gallery",
+					"method": "backToGallery()",
+					"idName": "backToGallery"	
+                },
+                "buttonStartTutorial": 
+				{
+                    "name": "Start Tutorial",
+					"method": "startTutorialFromDetailsScreen()",
+					"idName": "startTutorial"
+                },
+				"buttonViewDetails": 
+				{
+                    "name": "View Details",
+					"method": "viewDetails()",
+					"idName": "stepsViewDetails"	
+                }
+            }
+        }
+    },
+    "tutorial": 
+	{
+        "_common": 
+		{
+            "name": "Discovery Connector - Using the Slack Request node",
+            "shortDescription": "Learn how to use the Slack Request node (requires v12.0.6.0 or higher)",
+            "durationText": "This tutorial takes approximately",
+            "durationTime": "10 minutes",
+            "_resourceToOpenComment": "The ID of the first resource to open when the user imports the tutorial. Resource IDs are defined in the repo_metadata.json Tutorials listing on ot4i.",
+            "resourceToOpen": "MainFlow",
+            "helpLink": 
+			{
+                "text": "IBM Documentation",
+           		"link": "https://www.ibm.com/docs/SSTTDS_12.0/com.ibm.etools.mft.doc/acesw_home.html"
+            }
+        },
+        "pageDetails": 
+		{
+            "topicsName": "Tutorial topics",
+            "_topicListComment": "A short list of product concepts or tasks demonstrated by this tutorial",
+            "topicList": 
+			[
+                {
+                    "title": "Slack Request node"
+                }
+            ],
+            "outcomesName": "Learning outcomes",
+            "_outcomesComment": "A description of what the user will have learned or accomplished by running this tutorial.",
+            "outcomeList": 
+			[
+                {
+                    "title": "Use IBM App Connect Enterprise to connect to Slack and issue requests to send or retrieve messages, or to add, delete, or retrieve objects such as files, channels, users, and groups"
+                }
+            ],
+            "summary": 
+			{
+                "overviewName": "OVERVIEW",
+                "_overviewComment": "A short description of what happens in this tutorial, and an optional short explanation of the ACE concepts used in this tutorial if necessary for context. What background knowledge must the user have for this to make sense?",
+                "sections": 
+				[
+					{
+						"section":"Slack is a web-based, real-time and archived messaging app. You can communicate in open or private channels, send direct messages to colleagues, and share files. This tutorial demonstrates how to develop and run a message flow that sonnects to Slack and sends a message to a channel. This tutorial requires access to Slack. The tutorial provides a partially completed message flow and detailed steps describing the development process step-by-step. A summary of what you will do is provided here:"
+					},
+					{
+                       "section":"1. Create a local integration server which has a vault for storing credentials"
+					},					
+					{
+                       "section":"2. Launch the connector discovery process using a policy project which will be used to store a Slack policy containing connection information."
+					},
+					{
+                       "section":"3. Select the object and action which the Slack Request node will execute"
+					},
+					{
+                       "section":"4. Save the results of the connector discovery process"
+					},					
+					{
+                       "section":"6. Deploy and test the message flow, policy and credentials using the local integration server"
+					},
+					{
+                       "section":"For the convenience of more experienced users, the tutorial also provides a more complete version of the message flow, for which the connector discovery process has already been completed.  Instructions describe how to edit the Slack Request node with your Slack channel id, edit connection information in the policy, and how to create credentials to access your own instance of Slack."
+					}
+                ]
+            },
+			"helpLinks": 
+			{
+				"_helpLinksComment": "Helplinks that have a type:web attribute are rendered as web links. Otherwise, links are assumed to be to embedded Help topics in the Knowledge Center.",
+				"title": "Find out more",
+				"details": 
+				[					
+					{
+						"title": "IBM Documentation link to ",
+						"description": "Connecting to Slack from IBM App Connect Enterprise",
+						"link": "https://www.ibm.com/docs/en/app-connect/12.0?topic=applications-connecting-slack-from-app-connect-enterprise",
+						"type": "web"
+					}					
+				]
+			}
+        },
+        "pageSteps": 
+		{
+            "create": 
+			{
+                "overview": 
+				{
+                    "name": "Create",
+                    "heading": "Import projects",
+                    "_createComment": "A description of what will happen when the user clicks Import.",
+                    "sections": 
+					[
+                        {
+                            "section": "When you click Import, three projects will be imported into your workspace:"
+                        },
+						{
+                            "section": "1. An application named <span class='application'>ExampleSlack</span>"
+                        },
+						{
+                            "section": "2. An application named <span class='application'>CompleteExampleSlack</span>"
+                        },
+						{
+                            "section": "3. A policy project named <span class='application'>CompletePolicyProjectSlack</span>"
+                        },
+						{
+                            "section": "<span class='application'>ExampleSlack</span> contains a single message flow named <span class='application'>ExampleSlackFlow</span>. To save you time, most of the message flow is ready for use, but the Slack Request node has not yet been configured. This tutorial will guide you through the configuration of the node. The flow is driven by an HTTP input which expects to receive a short but specific JSON message, whose content will be used to send a message to a nominated Slack channel using the Slack Request node. This node has its three output terminals (Failure, Out and NoData) wired to three separate Trace nodes to capture the results."
+                        },
+						{ 
+                        	"section":"<span class='application'>CompleteExampleSlack</span> is very similar to <span class='application'>ExampleSlack</span> but the message flow which it contains, named  <span class='application'>CompleteExampleSlackFlow</span> (which exposes a different URL Fragment), has already had its Slack Request node configured, and an associated policy with connection information has already been generated. If you're already familiar with connector discovery, this application may be helpful to demonstrate some administration concepts such as reusing discovered artifacts, editting policies and updating credentials. If you want to use this message flow, there are instructions later for updating the channel id property, the connection details and credentials for your Slack instance."
+                        },
+                        {
+			    			"section": "<span class='application'>CompletePolicyProjectSlack</span> contains a single policy named <span class='application'>Slack1</span> which is used by the application <span class='application'>CompleteExampleSlack</span>."							
+						}
+                    ]
+                },
+                "helpLinks": 
+				{
+                    "title": "Find out more",
+                    "details": 
+					[
+                        {
+                             "title": "IBM Documentation link to ",
+                             "description": "Slack Request node",
+                             "link": "https://www.ibm.com/docs/en/app-connect/12.0?topic=nodes-slack-request-node",
+                             "type": "web"
+                        }
+                    ]
+                },
+                "actions": 
+				{
+                    "title": "Create Actions",
+                    "details": 
+					[
+                        {
+                            "name": "Import",
+                            "method": "importArtifacts()"
+                        }
+                    ]
+                }
+            },
+            "prepare": 
+			{
+                "overview": 
+				{
+                    "name": "Prepare",
+                    "heading": "This section describes how to complete the message flow configuration using the Connector Discovery process",
+                    "_prepareComment": "A description of what just happened when the user clicked Import, and what will happen when the user clicks Deploy.",
+                    "sections": [
+				    {
+                       "section":"<b>Create an Integration Server with a credential vault</b>",
+						  "steps":
+                        {
+                          "type": "ordered",
+                          "details":
+                          [
+                            {
+                                "details": "From the Integration Explorer view in the bottom left corner of the Toolkit, right-click the Integration Servers folder and select the option to <span class='uicontrol'>Create a local integration server</span>. We will leave most of the options with their default values. Type in a value (at least 8 characters long) for the Vault Key property. The instructions later in the tutorial will assume a value of <code>password123</code>. Untick the check box at the bottom of the dialog which is labelled <code>Start Integration Server</code>. Click Finish. The local Integration Server will be created using a project in your Toolkit's workspace as its work directory. We deliberately don't want to start up the server until later in the tutorial, because when the server process runs it will lock the vault from being used by other processes. Before running the server we want to use the Toolkit Connector Discovery process to populate the vault with the credentials needed for communication with Slack. If you are already familiar with the Connector Discovery process you can now skip over the rest of the instructions in this Prepare section and move straight to the tutorial's Run section, Option 2."
+                            }
+						  ]
+						}
+					},
+					{
+                       "section":"<b>Run the Connector Discovery process</b>",
+						  "steps":
+                        {
+                          "type": "ordered",
+                          "details":
+                          [
+                             {
+                                 "details": "When you imported the tutorial projects in the previous section, <span class='application'>ExampleSlackFlow</span> in application <span class='application'>ExampleSlack</span> will have been opened for you. First, check the properties of the three trace nodes in the messge flow, which are configured ready for deployment on a Windows system (their <code>File path</code> property is set to use the directory <code>C:\\temp</code>). If you are running on a different operating system, or if the file directory is not convenient for you, then feel free to change it. Next, select the Slack Request node and view its Properties window at the base of the screen. At this stage you should see an error stating that an action must be specified. Every Slack Request node (in fact, every Discovery Connector node) requires configuration to define what action it should execute against what object in the endpoint system. You make these decisions using the Connector Discovery process. Click the Launch Connector Discovery button."
+							 },							 
+							{
+        "details": "The Launch Connector Discovery wizard will open. The process of connecting to Slack and discovering information from it, will cause your Slack credentials to be saved in the vault, and your Slack connection information to be saved in a policy. Fill out the three required property values shown below and then click the Launch Discovery button:",
+        "substeps": {
+          "type":"unordered",
+          "details": [
+            {
+              "details": "<strong>Policy Project:</strong> Click the New button and create a policy project named <code>ExamplePolicyProjectSlack</code>"
+            },
+            {
+              "details": "<strong>Work directory:</strong> Click the Browse button and navigate to the TEST_SERVER directory in your Toolkit workspace. For example, this would be C:\\workspace\\TEST_SERVER if your Toolkit workspace were at C:\\workspace."
+            },
+            {
+              "details": "<strong>Vault Key:</strong> Type the same vault key which you used when creating your local integration server (named TEST_SERVER) earlier in the tutorial, for example <code>password123</code>"
+            }
+          ]
+		}
+	  }, 
+                            {
+                                 "details": "A new Configure connector node window will open. If you had previously connected to a Slack system then a list of those connections would be displayed, but in this example the status of the Slack connector is shown as <code>Not connected</code>. <strong>Before you use the Slack Request node in a message flow as part of this tutorial, you will need to have access to a Slack workspace. If your team isn't using Slack yet, you can get started with Slack (without charge) and create a Slack workspace at https://slack.com/intl/en-gb/get-started#/.</strong>. Underneath where the panel says <code>Not connected</code>, expand the section named <code>Messages</code> and choose the action <code>Send message</code>. The list of objects and actions will be replaced with a Connect button. Click the Connect button."
+							},
+							{
+                                 "details": "You will need to specify the basic access token to be used to authenticate App Connect with your Slack account. If you do not already have an access token, you can obtain one by following the instructions in the Slack connection details page of the App Connect documentation: https://www.ibm.com/docs/en/app-connect/12.0?topic=enterprise-slack-connection-details"
+							},
+							{
+                                 "details": "Paste your access token in to the field and you will be asked <code>Where do you want to post the message?</code> which you can specify by selecting an entry from the enumerated dropdown which lists all the available channels."
+							},
+									
+								
+							{
+                                 "details": "At the top of the window click the Save button, and you should see a confirmation message briefly appear. Close the Configure connector window and return to the Toolkit. <strong>It is important to remember this step</strong> otherwise the vault will remain locked and you will be unable to start your integration server TEST_SERVER when you come to test the flow in the last section of the tutorial. You will now find that the properties of the Slack Request node in the message flow have been updated. Save the message flow.  Explore the properties of the Slack Request node. The Basic properties tab will now display a short description of <code>Send message</code>, along with the <strong>Action</strong> (<code>CREATE</code>) and the <strong>Object</strong> (<code>message</code>). On the Connection properties tab, the <strong>Policy</strong> will have been configured as <code>{ExamplePolicyProjectSlack}:Slack1</code>."
+							}							
+						  ]
+						}
+					}
+             ]
+                },
+                "helpLinks": 
+				{
+                }
+            },
+            "run": 
+			{
+                "overview": 
+				{
+                    "name": "Run",
+                    "heading": "",
+                    "_runComment": "The full steps for the user to run through the tutorial. Use 'sections' to render paragraphs, 'steps' with a type of 'ordered' or 'unordered' to render HTML lists, and 'substeps' to render nested lists.",
+                "sections":[                            
+					           {  
+								"section": "<b>Option 1: Use the Flow Exerciser to test the tutorial scenario</b>",
+                                "steps": {
+                                    "type": "ordered",
+                                    "details": [                                      
+                                        {
+                                        "details": "In the Integration Explorer view of the Toolkit, right-click TEST_SERVER and select the option to Start."
+                                        },
+                                        {
+                                        "details": "Once the server has started, drag and drop deploy the policy project <span class='application'>ExamplePolicyProjectSlack</span> in to TEST_SERVER."
+                                        },										
+										{
+                                        "details": "Return to <span class='resource'>ExampleSlackFlow.msgflow</span> and click the Flow Exerciser icon <img src='http://ot4i.github.io/ot4i.tutorials//dist/images/icons/iib/startFlowExerciser.png' alt='' /> to start testing the flow."
+                                        },
+										{
+                                            "details": "Click the Send Message icon <img src='http://ot4i.github.io/ot4i.tutorials/dist/images/icons/iib/sendMessage.png' alt='' />. Create a new test message to invoke the HTTP Input node. The data carried in the text object of an input message will be sent to your slack channel. Here is an example:<code><br>{&quot;text&quot;:&quot;This is a message from your App Connect Enterprise message flow!&quot;}</code>. Click Send and your message is sent to the HTTPInput node. You should receive a JSON reply message which returns the same as the input. You will also see a highlighted path through the flow. Click on the highlighted path coming out of the Slack Request node and you should see a confirmation message with the timestamp at which the message was sent to Slack."
+										}
+                                        ]
+                                    }
+                            },							   
+							{
+								"section": "<b>Option 2: Using the alternative provided application named CompleteExampleSlack to test the tutorial scenario</b>",
+                                "steps": {
+                                    "type": "ordered",
+                                    "details": [                                      
+                                        {
+											"details": "In order to reuse the completed application which is provided with this tutorial, you must configure your integration server with credentials for communicating with your Slack instance.  Launch a command console session, and run the following command to create these credentials:<br><code>mqsicredentials --work-dir &lt;YourToolkitWorkspace&gt;\\TEST_SERVER  --vault-key password123 --create --credential-type slack --credential-name CompletePolicyProjectSlack_Slack1 --access-token &lt;YourSlackAccessToken&gt;</code>"
+										},
+										{	
+                                        "details": "Back in the Toolkit, in the Integration Explorer view, right-click <code>TEST_SERVER</code> and select the option to Start."
+                                        },
+                                        {
+                                        "details": "Drag and drop deploy the policy project <span class='application'>CompletePolicyProjectSlack</span> to <code>TEST_SERVER</code>."
+                                        },
+										{
+                                        "details": "Return to <span class='resource'>CompleteExampleSlackFlow.msgflow</span> and on the Basic properties of the Slack Request node locate the connection property which is named <code>Where do you want to post the message?</code> and change its value from <code>REPLACE_WITH_YOUR_CHANNEL_ID</code> to the value of your Slack channel id by clicking the Edit button.  If you are using the Slack app, to find the Slack channel id, simply right click on the channel name in the left menu and click Copy link. Paste it somewhere and you will see the link contains the channel id like this: https://ibm-cloud.slack.com/archives/<YOUR_CHANNEL_ID>. Resave the message flow  <span class='resource'>CompleteExampleSlackFlow.msgflow</span>."
+										},
+										{
+                                            "details": "Click the Flow Exerciser icon <img src='http://ot4i.github.io/ot4i.tutorials//dist/images/icons/iib/startFlowExerciser.png' alt='' /> to start testing the flow.  Click the Send Message icon <img src='http://ot4i.github.io/ot4i.tutorials/dist/images/icons/iib/sendMessage.png' alt='' />.  Create a new test message to invoke the HTTP Input node. The data carried in the text object of an input message will be sent to your slack channel. Here is an example:<code><br>{&quot;text&quot;:&quot;This is a message from your App Connect Enterprise message flow!&quot;}</code>. Click Send and your message is sent to the HTTPInput node. You should receive a JSON reply message which returns the same as the input. You will also see a highlighted path through the flow. Click on the highlighted path coming out of the Slack Request node and you should see a confirmation message with the timestamp at which the message was sent to Slack."
+										}
+									]
+								}
+							}
+                    ]
+                },
+                "helpLinks": 
+				{
+                    "title": "Find out more",
+                    "details": 
+					[
+{
+                             "title": "IBM Documentation link to ",
+                             "description": "Slack Request node",
+                             "link": "https://www.ibm.com/docs/en/app-connect/12.0?topic=nodes-slack-request-node",
+                             "type": "web"
+                        },
+						{
+                            "title": "IBM Documentation link to ",
+                            "description": "Testing your message flow by using the Flow exerciser",
+                            "link": "https://www.ibm.com/docs/SSTTDS_12.0/com.ibm.etools.mft.doc/rt26110_.htm",
+							"type": "web"
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}
